@@ -9,8 +9,31 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			node.vm.box = "centos65"
 			node.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
 			node.vm.provider "virtualbox" do |v|
-			  v.name = "node#{i}"
-			  v.customize ["modifyvm", :id, "--memory", "2048"]
+				v.name = "node#{i}"
+				if i < 3
+					v.customize ["modifyvm", :id, "--memory", "2048"]
+				end
+				if i > 2
+					v.customize ["modifyvm", :id, "--memory", "1024"]
+					file_to_disk = File.realpath(".").to_s + "/disk#{i}.vdi"
+
+					if ARGV[0] == "up" && ! File.exist?(file_to_disk)
+						puts "Creating 30GB disk #{file_to_disk}."
+						v.customize [
+							'createhd',
+							'--filename', file_to_disk,
+							'--format', 'VDI',
+							'--size', 30 * 1024 
+							]
+						v.customize [
+							'storageattach', :id,
+							'--storagectl', 'SATA',
+							'--port', 1, '--device', 0, 
+							'--type', 'hdd', '--medium',
+							file_to_disk
+							]
+					end
+				end
 			end
 			if i < 10
 				node.vm.network :private_network, ip: "10.211.55.10#{i}"
@@ -18,6 +41,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 				node.vm.network :private_network, ip: "10.211.55.1#{i}"
 			end
 			node.vm.hostname = "node#{i}"
+			if i > 2
+				node.vm.provision "shell", path: "scripts/add_new_disk.sh"
+			end
 			node.vm.provision "shell", path: "scripts/setup-centos.sh"
 			node.vm.provision "shell" do |s|
 				s.path = "scripts/setup-centos-hosts.sh"

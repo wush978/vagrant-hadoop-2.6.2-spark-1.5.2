@@ -13,3 +13,5 @@
 /learn-scala/.settings/org.eclipse.m2e.core.prefs
 resources/hadoop-2.6.2.tar.gz
 resources/spark-1.5.2-bin-hadoop2.6.tgz
+disk3.vdi
+disk4.vdi
