@@ -3,7 +3,7 @@ vagrant-hadoop-2.6.0-spark-1.3.0
 
 # Introduction
 
-Vagrant project to spin up a cluster of 4 virtual machines with Hadoop v2.6.0 and Spark v1.3.0. 
+Vagrant project to spin up a cluster of 4 virtual machines with Hadoop v2.6.2 and Spark v1.5.2
 
 1. node1 : HDFS NameNode + Spark Master
 2. node2 : YARN ResourceManager + JobHistoryServer + ProxyServer
@@ -35,8 +35,8 @@ If you have the resources (CPU + Disk Space + Memory), you may modify Vagrantfil
 # Make the VMs setup faster
 You can make the VM setup even faster if you pre-download the Hadoop, Spark, and Oracle JDK into the /resources directory.
 
-1. /resources/hadoop-2.6.0.tar.gz
-2. /resources/spark-1.3.0-bin-hadoop2.4.tgz
+1. /resources/hadoop-2.6.2.tar.gz
+2. /resources/spark-1.5.2-bin-hadoop2.6.tgz
 3. /resources/jdk-7u51-linux-x64.gz
 
 The setup script will automatically detect if these files (with precisely the same names) exist and use them instead. If you are using slightly different versions, you will have to modify the script accordingly.
@@ -48,7 +48,7 @@ I typically run the following tests after post-provisioning on node1 (as root us
 Run the following command to make sure you can run a MapReduce job.
 
 ```
-yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar pi 2 100
+yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.2.jar pi 2 100
 ```
 
 ### Test Spark on YARN
@@ -104,6 +104,7 @@ This project was kludge together with great pointers from all around the interne
 
 # Copyright Stuff
 Copyright 2014 Jee Vang
+Copyright 2015 Wush Wu
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
