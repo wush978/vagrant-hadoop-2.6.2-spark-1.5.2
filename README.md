@@ -1,4 +1,4 @@
-vagrant-hadoop-2.6.0-spark-1.3.0
+vagrant-hadoop-2.6.2-spark-1.5.2
 ================================
 
 # Introduction
