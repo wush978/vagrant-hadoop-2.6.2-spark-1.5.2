@@ -103,7 +103,7 @@ The Vagrant box is downloaded to the ~/.vagrant.d/boxes directory. On Windows, t
 This project was kludge together with great pointers from all around the internet. All references made inside the files themselves.
 
 # Copyright Stuff
-Copyright 2014 Jee Vang
+Copyright 2014 Jee Vang  
 Copyright 2015 Wush Wu
 
 Licensed under the Apache License, Version 2.0 (the "License");
