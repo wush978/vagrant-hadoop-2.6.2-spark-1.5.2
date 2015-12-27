@@ -10,11 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			node.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
 			node.vm.provider "virtualbox" do |v|
 				v.name = "node#{i}"
-				if i < 3
-					v.customize ["modifyvm", :id, "--memory", "2048"]
-				end
+				v.customize ["modifyvm", :id, "--memory", "2048"]
 				if i > 2
-					v.customize ["modifyvm", :id, "--memory", "1024"]
 					file_to_disk = File.realpath(".").to_s + "/disk#{i}.vdi"
 
 					if ARGV[0] == "up" && ! File.exist?(file_to_disk)

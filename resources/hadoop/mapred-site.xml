@@ -29,4 +29,8 @@
   <name>mapreduce.jobhistory.done-dir</name>
   <value>/var/hadoop/mr-history/done</value>
  </property>
+ <property>
+  <name>mapreduce.map.java.opts</name>
+  <value>-Xmx1024M</value>
+ </property>
 </configuration>
